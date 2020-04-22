@@ -1,0 +1,98 @@
+/*  Styles */
+
+html *{
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Baloo Bhaina 2', Arial, sans-serif;
+    font-size:14px;
+    color:#444;
+    margin:0;
+    padding:0;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a1e8fc+0,ffffff+100,fcfcfc+100 */
+    background: #a1e8fc; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #a1e8fc 0%, #ffffff 100%, #fcfcfc 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #a1e8fc 0%,#ffffff 100%,#fcfcfc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #a1e8fc 0%,#ffffff 100%,#fcfcfc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1e8fc', endColorstr='#fcfcfc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */}
+
+.main_box{
+    width:60%;
+    height:400px;
+    border:20px solid #23CBFD;
+    box-shadow:0 0 5px 0 #00A5D7;
+    background-color:white;
+    border-radius:10px;
+    position:absolute;
+    top:calc(50vh - 200px);
+    left:20%;
+    padding:40px 30px;
+}
+
+.main_title{
+    font-size:40px;
+    margin:0 0 20px 0;
+    padding:0;
+    text-align:center;
+    color:#00A5D7;
+}
+
+.icon_box{
+    padding:0;
+}
+
+.icon_box input{
+    width:255px;
+    display:block;
+    margin:0 auto 0 auto;
+    color: transparent;
+}
+.icon_box input::-webkit-file-upload-button{
+    visibility: hidden;
+}
+.icon_box input::before{
+    content: 'Choose an image (jpg, png or gif)';
+    color:white;
+    display:block;
+    background-color:#00A5D7;
+    border:3px solid #00A5D7;
+    border-radius:5px;
+    padding:8px 8px 5px 8px;
+    outline:none;
+    white-space:nowrap;
+    -webkit-user-select:none;
+    cursor:pointer;
+    font-weight:700;
+    font-size:12pt;
+}
+.icon_box input:hover::before {
+    background-color:#E9FAFF;
+    color:#00A5D7;
+}
+
+.icon_box canvas{
+    display:block;
+    margin:0 auto 20px auto;
+}
+
+.icon_box button{
+    display:block;
+    margin:auto;
+    padding-top:8px;
+    width:240px;
+    height:50px;
+    outline:none;
+    font-size:24px;
+    font-weight:700;
+    border-radius:5px;
+    border:3px solid #00A5D7;
+    background-color:#00A5D7;
+    color:#E9FAFF;
+    cursor:pointer;
+}
+
+.icon_box button:hover{
+    background-color:#E9FAFF;
+    color:#00A5D7;
+}
