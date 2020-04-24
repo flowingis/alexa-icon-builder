@@ -13,11 +13,18 @@
         <section class="main_box">
             <h1 class="main_title">Alexa Icon Builder</h1>
             <form class="icon_box">
-                <input type="file">
+                <input type="file" accept="image/*">
                 <canvas height="100"></canvas>
                 <button type="button">Generate Icon!</button>
+                <div data-locale-container></div>
             </form>
             <script src="src/index.js" type="module"></script>
         </section>
+        <template>
+            <label>
+                <input type="checkbox">
+                <span></span>
+            </label>
+        </template>
     </body>
 </html>

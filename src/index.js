@@ -1,9 +1,10 @@
 import createImage from './createImage.js'
+import download from './download.js'
+import localesFactory from './locales.js'
 
-const SMALL_FILENAME = 'it-IT_smallIconUri.png'
+const locale = localesFactory(document.querySelector('div[data-locale-container]'))
+
 const SMALL_SIZE = 108
-
-const BIG_FILENAME = 'it-IT_largeIconUri.png'
 const BIG_SIZE = 512
 
 const input = document
@@ -16,6 +17,20 @@ input.addEventListener('change', event => {
   createImage(file, 100, canvas)
 })
 
+const downloadImages = (file, selectedLocales) => {
+  selectedLocales
+    .forEach(async selectedLocale => {
+      const bigFilename = `${selectedLocale}_largeIconUri.png`
+      const smallFilename = `${selectedLocale}_smallIconUri.png`
+
+      const smallUrl = await createImage(file, SMALL_SIZE)
+      await download(smallFilename, smallUrl)
+
+      const bigUrl = await createImage(file, BIG_SIZE)
+      await download(bigFilename, bigUrl)
+    })
+}
+
 document
   .querySelector('button')
   .addEventListener('click', async () => {
@@ -26,19 +41,7 @@ document
       return
     }
 
-    const smallUrl = await createImage(file, SMALL_SIZE)
-    download(SMALL_FILENAME, smallUrl)
-
-    const bigUrl = await createImage(file, BIG_SIZE)
-    download(BIG_FILENAME, bigUrl)
+    downloadImages(file, locale.getSelectedLocales())
   })
 
-const download = (filename, url) => {
-  window.requestAnimationFrame(() => {
-    const link = document.createElement('a')
-    link.download = filename
-    link.href = url
-    link.click()
-    return url
-  })
-}
+locale.render()

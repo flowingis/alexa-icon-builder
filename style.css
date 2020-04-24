@@ -42,16 +42,16 @@ body{
     padding:0;
 }
 
-.icon_box input{
+.icon_box input[type="file"]{
     width:255px;
     display:block;
     margin:0 auto 0 auto;
     color: transparent;
 }
-.icon_box input::-webkit-file-upload-button{
+.icon_box input[type="file"]::-webkit-file-upload-button{
     visibility: hidden;
 }
-.icon_box input::before{
+.icon_box input[type="file"]::before{
     content: 'Choose an image (jpg, png or gif)';
     color:white;
     display:block;
@@ -66,7 +66,7 @@ body{
     font-weight:700;
     font-size:12pt;
 }
-.icon_box input:hover::before {
+.icon_box input[type="file"]:hover::before {
     background-color:#E9FAFF;
     color:#00A5D7;
 }
