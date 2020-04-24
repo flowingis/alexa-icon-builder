@@ -55,3 +55,5 @@ document
   })
 
 locale.render()
+
+createImage(document.querySelector('img'), 100, canvas)
