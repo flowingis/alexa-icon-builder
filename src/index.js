@@ -9,16 +9,11 @@ const BIG_SIZE = 512
 const input = document
   .querySelector('input')
 
-const image = document
-  .querySelector('img')
+const canvas = document.querySelector('canvas')
 
 input.addEventListener('change', event => {
-  const fileReader = new window.FileReader()
-  fileReader.onload = () => {
-    image.src = fileReader.result
-  }
   const [file] = input.files
-  fileReader.readAsDataURL(file)
+  createImage(file, 100, canvas)
 })
 
 document

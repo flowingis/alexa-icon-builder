@@ -71,7 +71,7 @@ body{
     color:#00A5D7;
 }
 
-.icon_box img{
+.icon_box canvas{
     display:block;
     margin:0 auto 20px auto;
 }

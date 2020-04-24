@@ -1,34 +1,35 @@
-export default (file, width) => new Promise(resolve => {
-  const fileReader = new window.FileReader()
-  fileReader.onload = () => {
-    const image = new window.Image()
-    const canvas = document.createElement('canvas')
-    const tmpCtx = canvas.getContext('2d')
-    canvas.width = width
-    canvas.height = width
+import loadImage from './loadImage.js'
+import fileToUrl from './fileToUrl.js'
 
-    const radius = width / 4
+export default async (file, width, canvas = document.createElement('canvas')) => {
+  const { devicePixelRatio } = window
+  const dataUrl = await fileToUrl(file)
+  const image = await loadImage(dataUrl)
+  canvas.width = width * devicePixelRatio
+  canvas.height = width * devicePixelRatio
 
-    image.onload = () => {
-      tmpCtx.save()
-      tmpCtx.beginPath()
-      tmpCtx.arc(2 * radius, 2 * radius, 2 * radius, 0, Math.PI * 2, true)
-      tmpCtx.closePath()
-      tmpCtx.clip()
+  canvas.style.width = `${canvas.width / devicePixelRatio}px`
+  canvas.style.height = `${canvas.height / devicePixelRatio}px`
 
-      tmpCtx.drawImage(image, 0, 0, 4 * radius + 2, 4 * radius + 2)
+  const context = canvas.getContext('2d')
 
-      tmpCtx.beginPath()
-      tmpCtx.arc(0, 0, 2, 0, Math.PI * 2, true)
-      tmpCtx.clip()
-      tmpCtx.closePath()
-      tmpCtx.restore()
+  context.scale(devicePixelRatio, devicePixelRatio)
 
-      resolve(canvas.toDataURL())
-    }
+  const radius = width / 4
 
-    image.src = fileReader.result
-  }
+  context.save()
+  context.beginPath()
+  context.arc(2 * radius, 2 * radius, 2 * radius, 0, Math.PI * 2, true)
+  context.closePath()
+  context.clip()
 
-  fileReader.readAsDataURL(file)
-})
+  context.drawImage(image, 0, 0, 4 * radius + 2, 4 * radius + 2)
+
+  context.beginPath()
+  context.arc(0, 0, 2, 0, Math.PI * 2, true)
+  context.clip()
+  context.closePath()
+  context.restore()
+
+  return canvas.toDataURL()
+}
