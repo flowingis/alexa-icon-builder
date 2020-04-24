@@ -1,4 +1,6 @@
 import createImage from './createImage.js'
+import loadImage from './loadImage.js'
+import fileToUrl from './fileToUrl.js'
 import download from './download.js'
 import localesFactory from './locales.js'
 
@@ -12,23 +14,30 @@ const input = document
 
 const canvas = document.querySelector('canvas')
 
-input.addEventListener('change', event => {
+input.addEventListener('change', async event => {
   const [file] = input.files
-  createImage(file, 100, canvas)
+  const dataUrl = await fileToUrl(file)
+  const image = await loadImage(dataUrl)
+  createImage(image, 100, canvas)
 })
 
-const downloadImages = (file, selectedLocales) => {
-  selectedLocales
-    .forEach(async selectedLocale => {
-      const bigFilename = `${selectedLocale}_largeIconUri.png`
-      const smallFilename = `${selectedLocale}_smallIconUri.png`
+const downloadImages = async (file, selectedLocales) => {
+  const dataUrl = await fileToUrl(file)
+  const image = await loadImage(dataUrl)
 
-      const smallUrl = await createImage(file, SMALL_SIZE)
-      await download(smallFilename, smallUrl)
+  return selectedLocales
+    .reduce((previousPromise, selectedLocale) => {
+      return previousPromise.then(async () => {
+        const bigFilename = `${selectedLocale}_largeIconUri.png`
+        const smallFilename = `${selectedLocale}_smallIconUri.png`
 
-      const bigUrl = await createImage(file, BIG_SIZE)
-      await download(bigFilename, bigUrl)
-    })
+        const smallUrl = await createImage(image, SMALL_SIZE)
+        await download(smallFilename, smallUrl)
+
+        const bigUrl = await createImage(file, BIG_SIZE)
+        await download(bigFilename, bigUrl)
+      })
+    }, Promise.resolve())
 }
 
 document
@@ -42,6 +51,7 @@ document
     }
 
     downloadImages(file, locale.getSelectedLocales())
+      .catch(window.alert)
   })
 
 locale.render()

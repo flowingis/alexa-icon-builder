@@ -1,10 +1,6 @@
-import loadImage from './loadImage.js'
-import fileToUrl from './fileToUrl.js'
-
-export default async (file, width, canvas = document.createElement('canvas')) => {
+export default async (image, width, canvas = document.createElement('canvas')) => {
   const { devicePixelRatio } = window
-  const dataUrl = await fileToUrl(file)
-  const image = await loadImage(dataUrl)
+
   canvas.width = width * devicePixelRatio
   canvas.height = width * devicePixelRatio
 
