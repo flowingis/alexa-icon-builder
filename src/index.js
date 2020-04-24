@@ -23,7 +23,7 @@ input.addEventListener('change', event => {
 
 document
   .querySelector('button')
-  .addEventListener('click', () => {
+  .addEventListener('click', async () => {
     const [file] = input.files
 
     if (!file) {
@@ -31,17 +31,19 @@ document
       return
     }
 
-    createImage(file, SMALL_SIZE)
-      .then(download(SMALL_FILENAME))
+    const smallUrl = await createImage(file, SMALL_SIZE)
+    download(SMALL_FILENAME, smallUrl)
 
-    createImage(file, BIG_SIZE)
-      .then(download(BIG_FILENAME))
+    const bigUrl = await createImage(file, BIG_SIZE)
+    download(BIG_FILENAME, bigUrl)
   })
 
-const download = filename => url => {
-  const link = document.createElement('a')
-  link.download = filename
-  link.href = url
-  link.click()
-  return url
+const download = (filename, url) => {
+  window.requestAnimationFrame(() => {
+    const link = document.createElement('a')
+    link.download = filename
+    link.href = url
+    link.click()
+    return url
+  })
 }
