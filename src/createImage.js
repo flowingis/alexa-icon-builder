@@ -1,5 +1,5 @@
-export default async (image, width, canvas = document.createElement('canvas')) => {
-  const { devicePixelRatio } = window
+export default async (image, width, canvas = document.createElement('canvas'), useDevicePixelRadio) => {
+  const devicePixelRatio = useDevicePixelRadio ? window.devicePixelRatio : 1
 
   canvas.width = width * devicePixelRatio
   canvas.height = width * devicePixelRatio

@@ -18,7 +18,7 @@ input.addEventListener('change', async event => {
   const [file] = input.files
   const dataUrl = await fileToUrl(file)
   const image = await loadImage(dataUrl)
-  createImage(image, 100, canvas)
+  createImage(image, 100, canvas, true)
 })
 
 const downloadImages = async (file, selectedLocales) => {
@@ -56,4 +56,4 @@ document
 
 locale.render()
 
-createImage(document.querySelector('img'), 100, canvas)
+createImage(document.querySelector('img'), 100, canvas, true)
