@@ -34,7 +34,7 @@ const downloadImages = async (file, selectedLocales) => {
         const smallUrl = await createImage(image, SMALL_SIZE)
         await download(smallFilename, smallUrl)
 
-        const bigUrl = await createImage(file, BIG_SIZE)
+        const bigUrl = await createImage(image, BIG_SIZE)
         await download(bigFilename, bigUrl)
       })
     }, Promise.resolve())
