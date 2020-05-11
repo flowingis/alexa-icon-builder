@@ -19,23 +19,42 @@ body{
 
 .main_box{
     width:60%;
-    height:400px;
+    /* height:400px; */
     border:20px solid #23CBFD;
     box-shadow:0 0 5px 0 #00A5D7;
     background-color:white;
     border-radius:10px;
     position:absolute;
-    top:calc(50vh - 200px);
+    /* top:calc(50vh - 200px); */
+    top:10%;
     left:20%;
-    padding:40px 30px;
+    padding:40px 30px 20px 30px;
 }
 
 .main_title{
     font-size:40px;
-    margin:0 0 20px 0;
+    margin:0 0 0 0;
     padding:0;
     text-align:center;
     color:#00A5D7;
+}
+
+.main_text{
+    font-size:16px;
+    margin:0 0 20px 0;
+    padding:0;
+    text-align:center;
+}
+
+.lacalization_box{
+    text-align:center;
+    font-size:16px;
+    margin:0 0 20px 0;
+    padding:0;
+}
+
+.lacalization_box span{
+    margin-right:5px;
 }
 
 .icon_box{
@@ -43,23 +62,24 @@ body{
 }
 
 .icon_box input[type="file"]{
-    width:255px;
+    width:120px;
+    height:39px;
     display:block;
     margin:0 auto 0 auto;
-    color: transparent;
+    color:transparent;
+    outline:none;
 }
 .icon_box input[type="file"]::-webkit-file-upload-button{
     visibility: hidden;
 }
 .icon_box input[type="file"]::before{
-    content: 'Choose an image (jpg, png or gif)';
-    color:white;
+    content: 'Upload image';
+    color:#00A5D7;
     display:block;
-    background-color:#00A5D7;
+    background-color:white;
     border:3px solid #00A5D7;
     border-radius:5px;
     padding:8px 8px 5px 8px;
-    outline:none;
     white-space:nowrap;
     -webkit-user-select:none;
     cursor:pointer;
@@ -78,7 +98,7 @@ body{
 
 .icon_box button{
     display:block;
-    margin:auto;
+    margin:50px auto 0 auto;
     padding-top:8px;
     width:240px;
     height:50px;

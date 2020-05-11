@@ -13,11 +13,13 @@
         <image src="placeholder.png" style="display:none;"/>
         <section class="main_box">
             <h1 class="main_title">Alexa Icon Builder</h1>
+            <p class="main_text">Drag & Drop an image or select a file from your computer (png, jpg, gif)</p>
             <form class="icon_box">
                 <input type="file" accept="image/*">
                 <canvas height="100"></canvas>
+                <p class="main_text">Select your internazionalitation preferences</p>
+                <div class="lacalization_box" data-locale-container></div>
                 <button type="button">Generate Icon!</button>
-                <div data-locale-container></div>
             </form>
             <script src="src/index.js" type="module"></script>
         </section>
